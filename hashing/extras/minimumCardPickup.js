@@ -5,16 +5,16 @@
 const slidingWindowMinimumCardPickup = cards => {
   let start = 0
   let ans = Infinity
-  const freq = new Map()
+  const dict = new Map()
 
   for (let end = 0; end < cards.length; end++) {
       const n = cards[end]
-      freq.set(n, (freq.get(n) || 0) + 1)
+      dict.set(n, (dict.get(n) || 0) + 1)
 
-      while (freq.get(n) > 1) {
+      while (dict.get(n) > 1) {
           ans = Math.min(ans, end - start + 1)
 
-          freq.set(cards[start], freq.get(cards[start]) - 1)
+          dict.set(cards[start], dict.get(cards[start]) - 1)
           start++
       }
   }
@@ -23,16 +23,16 @@ const slidingWindowMinimumCardPickup = cards => {
 }
 
 const minimumCardPickup = cards => {
-  const prefix = new Map()
+  const dict = new Map()
   let ans = Infinity
 
   for (let i = 0; i < cards.length; i++) {
     const n = cards[i]
-    if (!prefix.has(n)) {
-      prefix.set(n, i)
+    if (!dict.has(n)) {
+      dict.set(n, i)
     } else {
-      ans = Math.min(ans, i - prefix.get(n) + 1)
-      prefix.set(n, i)
+      ans = Math.min(ans, i - dict.get(n) + 1)
+      dict.set(n, i)
     }
   }
 
