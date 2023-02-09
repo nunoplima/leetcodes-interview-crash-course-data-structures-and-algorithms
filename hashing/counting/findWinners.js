@@ -3,7 +3,7 @@
  * @return {number[][]}
  */
 const findWinners = matches => {
-  const prefix = new Array(10 ** 5 + 1).fill(-1) // size of the limit input + 1
+  const prefix = new Array(10 ** 5 + 1).fill(-1) // size of the max limit input + 1
 
   for (let i = 0; i < matches.length; i++) {
     const [w, l] = matches[i]
@@ -20,9 +20,9 @@ const findWinners = matches => {
 
   const zeroL = []
   const oneL = []
-  for (let i = 0; i < prefix.length; i++) {
-    if (prefix[i] === 0) zeroL.push(i)
-    if (prefix[i] === 1) oneL.push(i)
+  for (let j = 0; j < prefix.length; j++) {
+    if (prefix[j] === 0) zeroL.push(j)
+    if (prefix[j] === 1) oneL.push(j)
   }
 
   return [zeroL, oneL]
